@@ -1,6 +1,7 @@
-package domains;
+package entities;
 
 public class Worker {
+    private long id;
     private String name;
     private final String birthday;
     private String level;
@@ -27,5 +28,9 @@ public class Worker {
 
     public int getSalary() {
         return salary;
+    }
+
+    public long getId() {
+        return id;
     }
 }

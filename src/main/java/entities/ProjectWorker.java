@@ -1,8 +1,8 @@
-package domains;
+package entities;
 
 public class ProjectWorker {
-    private int projectId;
-    private int workerId;
+    private final int projectId;
+    private final int workerId;
 
     public ProjectWorker(int projectId, int workerId) {
         this.projectId = projectId;

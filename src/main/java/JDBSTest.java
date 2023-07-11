@@ -1,20 +1,31 @@
-import db.service.DatabaseInitService;
-import db.service.DatabasePopulateService;
-import db.service.DatabaseQueryService;
+import db.service.ClientService;
+import org.flywaydb.core.Flyway;
+
 
 public class JDBSTest {
+
     public static void main(String[] args) {
-        DatabaseInitService databaseInitService = new DatabaseInitService();
-        DatabasePopulateService databasePopulateService = new DatabasePopulateService();
-        DatabaseQueryService databaseQueryService = new DatabaseQueryService();
+        Flyway flyway = Flyway
+                .configure()
+                .dataSource("jdbc:h2:./JDBC_HW4", null, null)
+                .load();
 
-        databaseInitService.initDatabase();
-        databasePopulateService.populateDatabase();
+        flyway.migrate();
 
-        System.out.println(databaseQueryService.findLongestProject());
-        System.out.println(databaseQueryService.findMaxProjectsClient());
-        System.out.println(databaseQueryService.findMaxSalaryWorker());
-        System.out.println(databaseQueryService.printProjectPrices());
-        System.out.println(databaseQueryService.findYoungestEldestWorkers());
+        ClientService clientService = new ClientService();
+        System.out.println(clientService.create("Ann"));
+        //System.out.println(clientService.getById(-1));
+        System.out.println(clientService.getById(1));
+        System.out.println(clientService.listAll());
+        //System.out.println(clientService.getById(100));
+        //clientService.setName(-1, "Bill");
+        //clientService.setName(100, "Bill");
+        clientService.setName(1, "Bill");
+        System.out.println(clientService.listAll());
+        clientService.deleteById(1);
+        //.deleteById(-1);
+        //clientService.deleteById(100);
+        System.out.println(clientService.listAll());
     }
 }
+

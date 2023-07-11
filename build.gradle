@@ -36,6 +36,7 @@ javafx {
 
 dependencies {
     implementation 'com.h2database:h2:2.1.214'
+    implementation 'org.flywaydb:flyway-core:8.5.11'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
